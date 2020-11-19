@@ -15,7 +15,7 @@ namespace NestedJsonTestPomelo
          
             var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
             var connectionString = "Server=localhost;Database=Blogs;User=root;Password=root;";
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), options => {
+            optionsBuilder.UseMySql(connectionString,  options => {
                 options.UseNewtonsoftJson();
             });
 

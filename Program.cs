@@ -12,9 +12,9 @@ namespace NestedJsonTestPomelo
         static void Main(string[] args)
         {
             var connectionString = "Server=localhost;Database=Blogs;User=root;Password=root;";
-            var serverVersion = ServerVersion.AutoDetect(connectionString);
+            //var serverVersion = ServerVersion.AutoDetect(connectionString);
             var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
-            optionsBuilder.UseMySql(connectionString, serverVersion, options => 
+            optionsBuilder.UseMySql(connectionString, options => 
             {
                 options.UseNewtonsoftJson();
             });
@@ -26,7 +26,7 @@ namespace NestedJsonTestPomelo
 
             var blog = new Blog
             {
-                BlogId = "1234",
+                BlogId = Guid.NewGuid().ToString(),
                 Metadata = JObject.Parse(JsonConvert.SerializeObject(new 
                 {
                     title = "My new Blog"
@@ -37,6 +37,7 @@ namespace NestedJsonTestPomelo
             context.SaveChanges();
 
             var blogInDb = context.Blogs.Where(b => b.Metadata["title"].Value<string>() == "My new Blog").FirstOrDefault();
+            Console.WriteLine(JsonConvert.SerializeObject(blogInDb));
         }
     }
 }
