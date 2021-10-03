@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace NestedJsonTestPomelo
+namespace EfCoreBulkInsertDateTime
 {
     public class Blog
     {

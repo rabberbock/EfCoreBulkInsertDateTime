@@ -3,12 +3,12 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NestedJsonTestPomelo;
+using EfCoreBulkInsertDateTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace NestedJsonTestPomelo.Migrations
+namespace EfCoreBulkInsertDateTime.Migrations
 {
     [DbContext(typeof(BlogContext))]
     partial class BlogContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace NestedJsonTestPomelo.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("NestedJsonTestPomelo.Blog", b =>
+            modelBuilder.Entity("EfCoreBulkInsertDateTime.Blog", b =>
                 {
                     b.Property<string>("BlogId")
                         .HasColumnType("text");

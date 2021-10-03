@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NestedJsonTestPomelo
+namespace EfCoreBulkInsertDateTime
 {
     public class BlogContext : DbContext
     {

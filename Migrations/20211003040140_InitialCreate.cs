@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace NestedJsonTestPomelo.Migrations
+namespace EfCoreBulkInsertDateTime.Migrations
 {
     public partial class InitialCreate : Migration
     {

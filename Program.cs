@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace NestedJsonTestPomelo
+namespace EfCoreBulkInsertDateTime
 {
     class Program
     {
