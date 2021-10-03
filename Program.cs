@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Z.EntityFramework.Extensions;
+using Npgsql;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NestedJsonTestPomelo
 {
@@ -11,33 +12,34 @@ namespace NestedJsonTestPomelo
     {
         static void Main(string[] args)
         {
-            var connectionString = "Server=localhost;Database=Blogs;User=root;Password=root;";
-            //var serverVersion = ServerVersion.AutoDetect(connectionString);
+            var connectionString = "Host=localhost;Database=Blogs;Username=postgres;Password=root;";
             var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
-            optionsBuilder.UseMySql(connectionString, options => 
+            optionsBuilder.UseNpgsql(connectionString, options => 
             {
-                options.UseNewtonsoftJson();
+
             });
 
             var context = new BlogContext(optionsBuilder.Options);
 
-            context.Database.EnsureCreated();
             context.Database.Migrate();
 
-            var blog = new Blog
+            var blogRegularAdd = new Blog
             {
                 BlogId = Guid.NewGuid().ToString(),
-                Metadata = JObject.Parse(JsonConvert.SerializeObject(new 
-                {
-                    title = "My new Blog"
-                }))
+                InsertionTime = DateTime.UtcNow
             };
 
-            context.Add(blog);
+            context.Add(blogRegularAdd);
             context.SaveChanges();
 
-            var blogInDb = context.Blogs.Where(b => b.Metadata["title"].Value<string>() == "My new Blog").FirstOrDefault();
-            Console.WriteLine(JsonConvert.SerializeObject(blogInDb));
+            var blogBulk = new Blog
+            {
+                BlogId = Guid.NewGuid().ToString(),
+                InsertionTime = DateTime.UtcNow
+            };
+
+            context.BulkInsert(new List<Blog> { blogBulk });
+           
         }
     }
 }

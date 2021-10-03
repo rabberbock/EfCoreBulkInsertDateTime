@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
 
 namespace NestedJsonTestPomelo.Migrations
 {
@@ -10,8 +13,8 @@ namespace NestedJsonTestPomelo.Migrations
                 name: "Blogs",
                 columns: table => new
                 {
-                    BlogId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
-                    Metadata = table.Column<string>(type: "json", nullable: true)
+                    BlogId = table.Column<string>(type: "text", nullable: false),
+                    InsertionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

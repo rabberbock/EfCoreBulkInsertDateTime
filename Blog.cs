@@ -1,5 +1,6 @@
-using Newtonsoft.Json.Linq;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace NestedJsonTestPomelo
 {
@@ -7,7 +8,6 @@ namespace NestedJsonTestPomelo
     {
         public string BlogId { get; set; }
 
-        [Column(TypeName = "json")]
-        public JObject Metadata { get; set; }
+        public DateTime InsertionTime { get; set; }
     }
 }
